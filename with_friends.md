@@ -30,6 +30,8 @@ No need for anymore fuss, let's start the exercises.
 
 ### 1. Making our first secret ###
 
+#### Explanation ####
+
 Let's say you have a message:
 
     THE SAFE CODE IS 4612
@@ -40,7 +42,9 @@ A really common thing people do is just shuffle the characters a bit, so every t
 
 So let's try this now:
 
-Challenge 1: Both of you shift the message one letter over, so the message above looks like this:
+#### Exercise ####
+
+Both of you shift the message one letter over, so the message above looks like this:
 
     UIF TBGF DPEF JT 5723
 
