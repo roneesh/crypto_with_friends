@@ -148,7 +148,7 @@ Into
 
     ... .- ..-. . / -.-. --- -.. . / ....- -.... .---- ..---
 
-Morse Code is not a secret in any way whatsoever, it's completely public knowledge. If someone trying to listen in on you and your friend talking in Morse Code knows that you're using Morse Code, they can read your messages. The only security you have is that maybe the person reading it has no clue what Morse Code is and what it looks like, BUT, if they're reading my other series Stealing Secrets With Friends(TM), then they'll quickly find out!*
+Morse Code is not a secret in any way whatsoever, it's completely public knowledge. If someone trying to listen in on you and your friend talking in Morse Code knows that you're using Morse Code, they can read your messages. The only security you have is that maybe the person reading it has no clue what Morse Code is and what it looks like, but if they're reading my other series Stealing Secrets With Friends(TM), then they'll quickly find out!*
 
 *This is not a real series I'm writing, sorry!
 
@@ -166,7 +166,7 @@ into:
 
 Let's take a look at this example, we have 'hello' and in binary it's '01101000 01100101 01101100 01101100 01101111'
 
-Notice that 'hello' has 5 characters ('h', 'e', 'l', 'l', 'o'). And notice that our binary has 5 chunks. Furthermore, notice that the two chunks where the letter l's are the same, this means that each character of the word hello has the same 8-bit representation. 
+Notice that 'hello' has 5 characters ('h', 'e', 'l', 'l', 'o'). And notice that our binary has 5 chunks. Furthermore, notice that the two chunks where the letter l's are the same, this means that each english letter has it's own uniqute 8-bit representation.
 
 A single bit is just a 0 or 1, so we if we put eight in a row, we have 8-bits, or 1-byte. So each letter is 1-byte.
 
