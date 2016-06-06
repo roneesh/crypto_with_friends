@@ -173,9 +173,19 @@ So now we have to ask our second question, of, why does each letter correspond t
 This was basically just a design decision made a long time (The 60's) ago when some engineers created ASCII, which is one of the earliest text to binary encodings. They decided that certain characters in the english language would corresond to a certain number, so if you look at an ASCII table entry for lowercase 'h':
 
 Decimal value: 104 
+
 Hex value    : 68  
+
 Binary value : 01101000
+
 Displays as  : h
+
+Tables can look like this:
+
+Decimal  Hex value  Binary value  Displays as
+-------  ---------  ------------  -----------
+104      68         01101000      h
+
 
 Decimal 104 in binary is 01101000, and decimal 104 in hex is 68, these are all equivalent values
 
