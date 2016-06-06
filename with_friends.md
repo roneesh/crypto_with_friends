@@ -183,7 +183,7 @@ Decimal 104 in binary is 01101000, and decimal 104 in hex is 68, these are all e
 
 So, finally, we get to exercise 1, let's convert the decimal value of 104 to Binary, and then convert it to hexidecimal (also just called 'hex'), and you should get a decimal value of 01101000 and a hex value of 68. Here's where a better book would go over how to convert from decimal (base 10) to binary (base 2) or hex (base 16), but this is not a better book, so Google it! (Google: 'method for converting to binary' and 'convert decimal to hex' to find some ways).
 
-Then I want you to look up an ASCII table online (Google: 'ASCII table') and then find the decimal values for 'e', 'l' and 'o' and convert them to both binary and hex. One of you should convert 'h' and 'e' and the other person should convert 'l' and 'o', then combine them to get 'hello' in both binary and hex. Your answers should look like this:
+Then I want you to look up an ASCII table online (Google: 'ASCII table') and find the decimal values for 'e', 'l' and 'o' and convert them to both binary and hex. One of you should convert 'h' and 'e' and the other person should convert 'l' and 'o', then combine them to get 'hello' in both binary and hex. Your answers should look like this:
 
     01101000 01100101 01101100 01101100 01101111
     68       65       6C       6C       6F   
@@ -200,16 +200,15 @@ Let's do one more exercise, and this time I want you and your partner to pick a 
 
 And one of you encode it in binary, and the other in hex, then I want you to switch and decode each other's message. So if you turned it into binary, you'll get some hex to decode back into English. Remember, capital letters have different ASCII values than lower case ones and puncutation like a period or exclamation point will have their own decimal values too. Also a ' ' has it's own encoding value too. 
 
+The binary value of 'The car is red.' is:
+
     01010100 01101000 01100101 00100000 01100011 01100001 01110010 00100000 01101001 01110011 00100000 01110010 01100101 01100100 00101110 
+
+And its hex value is:
 
     54 68 65 20 63 61 72 20 69 73 20 72 65 64 2e
 
+But hey, don't just copy me, verify it yourself!
+
 Time to Complete: 20-30 minutes, if at 20 minutes you haven't gotten the full message decoded yet, no worries, you got the idea, feel free to stop!
-
-
-
-
-
-
-    
 
