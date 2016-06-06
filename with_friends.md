@@ -4,33 +4,51 @@ Crypto With Friends
 Contents:
 
 1. Introduction
-2. References
-3. With Friends
-4. Exercises
+2. With Friends!
+3. What You Both Will Learn
+4. Disclaimer, This Is Not Secure!
+4. References
+5. Exercises
 
 
 ## 1. Introduction ##
 
-Crypto with friends is a lab based introduction to cryptography that is solely targeted at the beginner. There are a TON of resources out there for learning crypto, but the most common ones often come up pretty short in explaining what concept you're actually studying and how it fits into the bigger picture of cryptography. This series was inspired by Matasano's CryptoPals challenges, and while they are very informative, they are very dense. While doing those challenges it can be hard to figure out what you're doing and why. For programmers of less experience, attempting them will likely cause some frustration as they butt their ahead against both entirely new crypto concepts and also new parts of their langauge they are encountering. No doubt that is a recipe for growth as a programmer, but, why can't the growth come without the frustration? What if a series framed the crypto concepts more clearly, then budding crypto learner could move quicker, isn't that better? A second reason for this series is that most challenges online are for one person to do alone, which is strange because Crypto is inherently meant for two people (even if you're only encrypting your personal files, the second person is you in some months when you decrypt those files). Therefore the labs in this series will be for two people to do together.
+Crypto with friends is a lab based introduction to cryptography that is solely targeted at the beginner. There are a TON of resources out there for learning crypto, but the most common ones often come up pretty short in explaining what concept you're actually studying and how it fits into the bigger picture of cryptography. 
 
-## 2. References ##
+This series was inspired by my attempts at doing Matasano's CryptoPals challenges. While they are very informative, they are very dense. When attempting those challenges it can be hard to figure out what you're doing and why. For programmers of less experience, attempting them will likely cause some frustration as they butt their ahead against both entirely new crypto concepts and also new parts of their langauge they are encountering. No doubt that is a recipe for growth as a programmer, but why can't the growth come without the frustration? What if a series framed the crypto concepts more clearly, then budding crypto learner could move quicker, isn't that better? 
+
+A second reason for this series is that most challenges online are for one person to do alone, which is strange because Crypto is inherently meant for two people (even if you're only encrypting your personal files, the second person is you in some months when you decrypt those files). Therefore the labs in this series will be for two people to do together.
+
+## 2. With Friends! ##
+
+This series is meant to be done with a friend. All exercises are for two people, and will be based around sending messages to each other. If you're on your own, you can be the second person, but the most fun will be had if you're sending messages to another computer and receiving messages from another computer. If you don't have someone to do these with, my advice is to find someone and ask them to join you! You'd be surprised how many people will be into the idea of learning beginner friendly Crypto!
+
+## 3. What you Both Will Learn ##
+
+You'll learn three basic concepts:
+
+1. Encoding messages (which is not encryption)
+2. Encrypting messages (which is encryption)
+3. What hashing is.
+
+## 4. Disclaimer, This Is Not Secure! ##
+
+I have to point out here, that what you'll learn in these exercises is not meant for securing messages in real life! Everything you make here can be broken by trivially by most anyone! Use these to learn ony! I make no promise of any security with these exercises. I do make a promise of fun.
+
+## 4. References ##
 
 This series will reference a few sources, they are all freely available online.
 
     Crypto101 - https://www.crypto101.io/ 
     CryptoPals - https://cryptopals.com/
 
-## 3. With Friends ##
-
-This series is meant to be done with a friend. All exercises are for two people, and will be based around sending messages to each other. If you're on your own, you can be the second person, but the most fun will be had if you're sending messages to another computer and receiving messages from another computer. If you don't have someone to do these with, my advice is to find someone and ask them to join you! You'd be surprised how many people will be into the idea of learning beginner friendly Crypto!
-
-## 4. Exercises ##
+## 5. Exercises ##
 
 No need for anymore fuss, let's start the exercises.
 
 ### 1. Making our first secret ###
 
-#### Explanation ####
+##### Explanation #####
 
 Let's say you have a message:
 
@@ -42,7 +60,7 @@ A really common thing people do is just shuffle the characters a bit, so every t
 
 So let's try this now:
 
-#### Exercise ####
+##### Exercise #####
 
 Both of you shift the message one letter over, so the message above looks like this:
 
@@ -83,5 +101,8 @@ To this:
 Wow! This secret message is much more secure than above, and guess what, it's not even encrypted, it's actually just encoded! Which is what we'll go over in the next challenge. But now an attacker can't guess which part is the safe code and which part is the text. They also are thrown for another loop, in that some characters are capitalized and some are lower case. An attacker who studies this messge will have a much harder time than the attacker above!*
 
 *Ok you got me, any true crypto attacker won't have a hard time, but what if the attacker is new to crypto like you!
+
+### 2. Encoding (which is not encrypting) ###
+
 
 
