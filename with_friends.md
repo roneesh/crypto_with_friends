@@ -38,6 +38,8 @@ To do these exercises you'll need to have Node.js installed on your computer as 
 
 After that, you'll just need to be comfortable using your command line, and doing some Javascript via the Node command on it. If you need a command line introduction, I have one I recorded myself at: https://www.youtube.com/watch?v=KP0b0iaZiWk
 
+As far as Javascript knowlege goes you should feel comfortable invoking functions, passing arguments to functions and using the 'new' operator in Javascript. You should also feel ok with some concepts of working with arrays.
+
 ## 5. Disclaimer, This Is Not Secure! ##
 
 I have to point out here, that what you'll learn in these exercises is not meant for securing messages in real life! Everything you make here can be broken by trivially by most anyone! Use these to learn ony! I make no promise of any security with these exercises. I do make a promise of fun.
@@ -209,3 +211,118 @@ But hey, don't just copy me, verify it yourself!
 
 Time to Complete: 20-30 minutes, if at 20 minutes you haven't gotten the full message decoded yet, no worries, you got the idea, feel free to stop!
 
+### 3. More Encoding (which is still not encrypting) ###
+
+##### Discussion #####
+
+So now we should have a feel for taking our English message, and through the ASCII encoding standard [TODO: Is this a good way to put it, encoding standard?], we have a uniform way to get our message into binary or hex, which computers natively understand. And since ASCII is a universally accepted standard, we know that most all computers are capable of understand us, we are one step closer to encryption!
+
+Another encoding we should talk about is base 64 encoding, which yes, you're correct is absolutely insane sounding. 
+
+In ASCII, we decided that most every english character has a base 10 (decimal) value. We then convert it to binary or hex for saving in the computer's memory. We can also convert that english character to base64.
+
+Let's look at our example of:
+
+    The car is red.
+
+In base64 is:
+
+    VGhlIGNhciBpcyByZWQu
+
+A table of the first two letters should only confuse you more...
+
+| Letter | Decimal | Binary | Base64 value |
+|--------|---------|--------|--------------|
+| T      | 84      |01010100| VA==         |
+| h      | 104     |01101000| aA==         |
+| Th     | 84 104  |01010100| VGg=         |
+|        |         |01101000|              |
+
+What. The. Hell. So encoding 'T' and 'h' separately to base64 result in a different encoding than 'Th' together? How? Why? Nooooooo.
+
+Well Base64 is a weirder encoding, but what you need to know is that it's taking your string, putting it into binary (which we can do like cake now), and then splitting it into 6-bit chunks and converting those:
+
+|   T    |   h     00|
+|--------|--------|--|
+|010101|000110|100000|
+|  21  |  6   |  32  | 
+|Base64|Base64|Base64|
+|  V   |  G   |  g   |
+
+010101 is 21 in decimal and is V in base64, 000110 is 6 in decimal is G in base64 and 100000 is 32 in decimal and g in base64.
+
+So that's how we got VGg, but what about the '='? Well that's padding, notice we added two zeroes on the end to turn 16 bits into 3 6-bit blocks we could convert (so we had to add two empty bits to get our 18 required bits).
+
+The intricacies of converting to base64 by hand are not what you should be focusing on though! So now we're going to do our first computer assignment. We are going to convert plain-text to base64!
+
+##### Exercises #####
+
+We're going to convert our string:
+
+    The car is red.
+
+to base64 using Javascript. You'll want to go your command line and enter the Javascript repl by typing 'node' on the command line, like so:
+
+    > node
+
+Then once you're in, let's make a new Buffer object, a Buffer is Node's way of letting us represent hex data. So when we make a new buffer of out of our string, it's automatically storing it as Hex. Let's save the buffer as a new variable:
+
+    > var buffer = new Buffer('The car is red.');
+
+The if we just type in our variable name:
+
+    > buffer
+    // <Buffer 54 68 65 20 63 61 72 20 69 73 20 72 65 64 2e>
+
+The output should loook like the <Buffer 54 68 65...> line.
+
+So now we have a Javascript variable of raw hex data. Which you know that we can easily convert to letters via ascii, or we could transform it into base64.
+
+So let's display the hex as base64, type the following command in:
+
+    > buffer.toString('base64')
+    // 'VGhlIGNhciBpcyByZWQu'
+
+You should see the 'VGhlI...' string output
+
+Now let's display it as hex
+
+    > buffer.toString('hex');
+    // 54686520636172206973207265642e
+
+Notice that in this case, it looks exactly like the hex values in our Buffer? That's because it stores it as hex, so to output a string of it's hex values is pretty simple.
+
+Finally let's turn it back into text:
+
+    > buffer.toString();
+    // 'The car is red.'
+
+So there we go, we've just manipulated our data from text to hex, and then back to base64, we are encoding with speed now!
+
+So now you and your partner should encode a few messages and send them to each other (via e-mail or IM), then you should try and decode the messages you recieve.
+
+For instance if you get a message that looks like it's hex, try and first turn it into a Buffer like so:
+
+    > var buffer = new Buffer('546865207361666520636f64652069732034353136', 'hex');
+    // <Buffer 54 68 65 20 73 61 66 65 20 63 6f 64 65 20 69 73 20 34 35 31 36>
+
+Then turn it to an ASCII string by running:
+
+    > buffer.toString();
+    // 'The safe code is 4516'
+
+Notice above that when our input was hex, we add the 'hex' argument to the Buffer function. That told our buffer that we weren't passing in the characters of 5468... etc, but instead they were hex values representing characters. It's a bit confusing, but try a few messages and you'll get the hang of it. 
+
+If we want to take a base64 encoded value and get its raw hex bytes, we can do the following:
+
+    > var buffer = new Buffer('VGhlIGNhciBpcyByZWQu', 'base64')
+    > buffer.toString()
+    // 'The car is red.'
+
+You and your friend should each send three messages to each other:
+
+1 Plaintext message, 1 hex encoded message and 1 base64 encoded message, and then you should each make a buffer out of each, and get it's original text. 
+
+Remember, encoding isn't encryption, but it sure kind of feels like it sometime!
+
+Time to Complete: 10 minutes
