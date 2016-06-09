@@ -63,9 +63,9 @@ Let's say you have a message:
 
     THE SAFE CODE IS 4612
 
-And you want to send this to your friend so only they can open your safe. It's a bad idea to send this message as it is, since anyone who can read English can read this message and open your safe. It's a much better idea to somehow make it readable to only your friend. Whatever process we use, we in general refer to it as 'Encryption', though techincally the term encryption refers to using specific algortihms to generate a secret message. 
+And you want to send this to your friend so only they can open your safe. It's a bad idea to send this message as it is, since anyone who can read English can read this message and open your safe. It's a much better idea to somehow make it readable to only your friend. Whatever process we use, we in general refer to it as 'Encryption', though techincally the term encryption refers to using specific algortihms to generate a secret message with a key. 
 
-A really common thing people do is just shuffle the characters a bit, so every time you see the letter 'a' replace it with a 'b', and every time you see a 'b' replace it with a 'c' and so on. For each number, add 1 to it.
+Before encryption, A really common thing people did is just shuffle the characters a bit, so every time you see the letter 'a' replace it with a 'b', and every time you see a 'b' replace it with a 'c' and so on. For each number, add 1 to it.
 
 So let's try this now:
 
@@ -89,7 +89,7 @@ But now let's think about something else. Let's say someone Googles the model of
 
     UIF TBGF DPEF JT 5723
 
-Then if they're smart, they'll realize they don't even need to bother decrypting most of the message, all they should decrypt is:
+Then if they're smart, they'll realize they don't even need to bother decrypting most of the message, all they should decrypt is the 4-letter blocks:
 
     TBGF DPEF 5723
 
@@ -99,23 +99,46 @@ And after a few tries, they find that the message is:
 
 And that's really all they need! 
 
-So this is our first big lesson in Crypto: Attackers are clever, and it's not enough to just change the characters of your message, but also change how long your secret message is. What if instead you could change your message of:
+So this is our first big lesson in Crypto: Attackers are clever, and it's not enough to just change the characters of your message, but also change how long your secret message is and how it is presented. 
+
+What if instead, you could change your message of:
 
     THE SAFE CODE IS 4612
 
 To this:
 
-    VEhFIFNBRkUgQ09ERSBJUyA0NjEy
+    hQIMA1WMoy9b0Iy8AQ//cQFpUNNuombyP5dKSoZd7jXdzvV6usfmI95amqmWPEOW
+    tATRVrN9qF7N4wxLniqgmQ4eSYfyzs05rWUCmyoioxQsjTp1jzfn9KiuMfXpX0i1
+    n3QEz6cNj1s+dvIr5U3ngi+/CRWX8ZPKa/7Wq7+z0Ajhmf7iQqssfDCBcu99nqYT
+    7cZUKjX6i/maEuMfTuMyjI9503zCDaYeo6AdiNy1lvgMYAKBZJ67UaTpMHSp9ME/
+    3olrtIIJo4Oe/HGizA3ZqCvt7dmqsRAfzf7Uik6AgEhnjS2YdGSl5YhUwS0M+vCT
+    rBsqy12CMaqR0lq4+sylPtWp40uGXP476zL4fkMipSdgypfNo5dyIFFUZsUBSBXF
+    fJGB8Jp4r6XNNWXkBS70Nd3fSnCcfte3yzCTflb1WquVGasCvEgeoYJrd6s49SAJ
+    bt1vxhgZqX6AoWOLlhWgJhLjfVf+WApCTtK7+Zb3uVE8sOyMb3tS3KHK+/48PC/O
+    R5ao3NgekL1j//0diXMsCj9ySEy/8tcIDo0oYKXss1jDdHn1Ewwl8PbIjiUC3o/0
+    AksuwmOrGvFECxml75IodIsHy+xcY2kS7KnDhrcSksB5FvVkY8XTlksR6r25RRCe
+    aC+zmA8udDMhX5Vzjo+ujuW1zsmKUV1Zx3RQcxvbihwN2AC07dEO+CQWeGfyQsLS
+    UAE1L8DDImFl1e8ZVeBV7fFAfb+YxEjW/BaI9oSxjwvKEZ+767kNFN9NU3D6gYdf
+    4VBCPXXk4nLKB1zEbesF+Ga7HIquWGcMjgmIT4sMVThs
+    =CJ4X
 
-Wow! This secret message is way different, and guess what, it's not even encrypted, it's actually just encoded! Which is what we'll go over in the next challenge. But now an attacker can't guess which part is the safe code and which part is the text. They also are thrown for another loop, in that some characters are capitalized and some are lower case. An attacker who studies this messge will have a much harder time than the attacker above!*
-
-*Ok you got me, any true crypto attacker won't have a hard time, but what if the attacker is new to crypto like you!
+Wow! This secret message is way different. This is not like our first attempt where we just shifted the message by one character. This messag is encrypted, and only the intended recipient can decrypt it. Also notice that this message is gigantic, and reads as gibberish, and gives a person reading it no idea what the intent of the original message was. This message is now really a secret. 
 
 ### 2. Encoding (which is not encrypting) ###
 
 ##### Discussion #####
 
 The first step to understanding the world of crypto is understanding encoding. You can encode a message, send it to your friend and they can decode the message. Nothing about encoding is secret! Whoever gets a hold of your encoded message can decode it, provided they know what encoding was used.
+
+For example, our message above of
+
+    THE SAFE CODE IS 4612
+
+Can be base64 encoded to
+
+    VEhFIFNBRkUgQ09ERSBJUyA0NjEy
+
+You might be tempted to think encoding is encryption since this gibberish looks a lot like the big block of gibberish above, but it is not! I repeat, encoding is public, not secret, anyone who recognizes that this message is written in base64 can try (and will succeed in) decoding it and see the original plain text. 
 
 Some encoding you're likely familiar with:
 
@@ -187,7 +210,7 @@ Then I want you to look up an ASCII table online (Google: 'ASCII table') and fin
     01101000 01100101 01101100 01101100 01101111
     68       65       6C       6C       6F   
 
-Note, if you didn't get results like mine, check and make sure you weren't using the decimal values 
+Note, if you didn't get results like mine, check and make sure you weren't using the decimal values. Also remember that lower case and uppercase letters have different values.
 
 Time to Complete: 15 minutes
 
@@ -197,7 +220,7 @@ Let's do one more exercise, and this time I want you and your partner to pick a 
 
     The car is red.
 
-And one of you encode it in binary, and the other in hex, then I want you to switch and decode each other's message. So if you turned it into binary, you'll get some hex to decode back into English. Remember, capital letters have different ASCII values than lower case ones and puncutation like a period or exclamation point will have their own decimal values too. Also a ' ' has it's own encoding value too. 
+And one of you encode it in binary, and the other in hex, then I want you to switch and decode each other's message. So if you turned it into binary, you'll in turn get some hex to decode back into English. Remember, capital letters have different ASCII values than lower case ones and puncutation like a period or exclamation point will have their own decimal values too. Also a ' ' has it's own encoding value too. 
 
 The binary value of 'The car is red.' is:
 
@@ -215,9 +238,9 @@ Time to Complete: 20-30 minutes, if at 20 minutes you haven't gotten the full me
 
 ##### Discussion #####
 
-So now we should have a feel for taking our English message, and through the ASCII encoding standard [TODO: Is this a good way to put it, encoding standard?], we have a uniform way to get our message into binary or hex, which computers natively understand. And since ASCII is a universally accepted standard, we know that most all computers are capable of understand us, we are one step closer to encryption!
+So now we should have a feel for taking our English message, using the ASCII character table, we have a uniform way to get our message into binary or hex, which computers natively understand. And since ASCII is a universally accepted standard, we know that most all computers are capable of understand us, we are one step closer to encryption!
 
-Another encoding we should talk about is base 64 encoding, which yes, you're correct is absolutely insane sounding. 
+Another encoding we should talk about is base64 encoding, which yes, you're correct is absolutely insane sounding. 
 
 In ASCII, we decided that most every english character has a base 10 (decimal) value. We then convert it to binary or hex for saving in the computer's memory. We can also convert that english character to base64.
 
@@ -306,16 +329,17 @@ For instance if you get a message that looks like it's hex, try and first turn i
     > var buffer = new Buffer('546865207361666520636f64652069732034353136', 'hex');
     // <Buffer 54 68 65 20 73 61 66 65 20 63 6f 64 65 20 69 73 20 34 35 31 36>
 
-Then turn it to an ASCII string by running:
+Then turn your hex into an ASCII string by running:
 
     > buffer.toString();
     // 'The safe code is 4516'
 
-Notice above that when our input was hex, we add the 'hex' argument to the Buffer function. That told our buffer that we weren't passing in the characters of 5468... etc, but instead they were hex values representing characters. It's a bit confusing, but try a few messages and you'll get the hang of it. 
+Notice above that when our input was hex, we add the 'hex' argument to the Buffer function. That told our buffer that we weren't passing in the characters of 5468... etc, but instead they were hex values representing characters. Or another way of putting, the string of '5468...' is not intended to represent the number 5468 but hex values that should be looked up in the ASCII table
 
 If we want to take a base64 encoded value and get its raw hex bytes, we can do the following:
 
     > var buffer = new Buffer('VGhlIGNhciBpcyByZWQu', 'base64')
+    > // <Buffer 54 68 65 20 63 61 72 20 69 73 20 72 65 64 2e>
     > buffer.toString()
     // 'The car is red.'
 
