@@ -393,5 +393,5 @@ If you feel like you're clear on those concepts. Let's move on to some basic enc
 
 Now we're going to get into our first notions of encrypting with computers. We could spend more time doing encryption by hand, but there are lots of good books that start by doing that. I want to instead spend some time demystifying the first computer based encryption tool you'll use: XOR.
 
-First off, it's pronounced "Ex Or", in two syllables. Not "Zor" or "Shor", but "Ex Or".
+First off, it's pronounced "Ex Or", in two syllables. Not "Zor" or "Shor" or "Tom Petty", but "Ex Or".
 
