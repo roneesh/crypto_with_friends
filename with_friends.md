@@ -350,3 +350,41 @@ You and your friend should each send three messages to each other:
 Remember, encoding isn't encryption, but it sure kind of feels like it sometime!
 
 Time to Complete: 10 minutes
+
+Let's do one final exercise, using Node's 'fs' library. We're going to read in a file and see that it is stored as a Buffer.
+
+First, make a file named message.txt with the contents of 'this is the message'. Here's a quick one line command line command you can use to make it.
+
+    > echo 'this is the message' > message.txt
+
+Now make another file that is a Javascript file called read.js (the touch command can be used to make a file)
+
+    > touch read.js
+
+Open read.js and put in the following:
+
+    var fs = require('fs');
+    var file = fs.readFileSync('./message.txt');
+    console.log(file);
+
+Save the file and now run it on your command line by doing the following:
+
+    > node read.js
+    // <Buffer 74 68 69 73 20 69 73 20 74 68 65 20 6d 65 73 73 61 67 65 0a>
+
+And your output should be the Buffer object shown. 
+
+Beware of this big gotcha: If the contents of your file is encoded, then you must specify that in your readFileSync call, e.g.
+
+    > var file = fs.readFileSync('./hexEncodedMessage.txt', 'hex')
+
+Otherwise it will think the file is literal English and give you the hex values of your hex values, which is a mess, and will cause you a headache when you're encrypting/decrypting!
+
+So now, let's take stock of what we've done:
+
+1. You should realize that encoding is not encrypting, and encoded messages are not secret in any way whatsoever.
+2. You should be able to use Javascript to encode and decode strings.
+3. You can also get the raw data of files you read in, and you're careful to specify if they are encoded or not.
+4. You should have a sense of how your computer thinks of string data as numbers.
+
+If you feel like you're clear on those concepts. Let's move on to some basic encryption!
