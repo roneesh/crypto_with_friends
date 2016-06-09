@@ -389,7 +389,7 @@ So now, let's take stock of what we've done:
 
 If you feel like you're clear on those concepts. Let's move on to some basic encryption!
 
-### 4. The almight XOR ###
+### 4. The almighty XOR ###
 
 Now we're going to get into our first notions of encrypting with computers. We could spend more time doing encryption by hand, but there are lots of good books that start by doing that. I want to instead spend some time demystifying the first computer based encryption tool you'll use: XOR.
 
