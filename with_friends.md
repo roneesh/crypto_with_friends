@@ -391,6 +391,8 @@ If you feel like you're clear on those concepts. Let's move on to some basic enc
 
 ### 4. The almighty XOR ###
 
+##### Discussion #####
+
 Now we're going to get into our first notions of encrypting with computers. We could spend more time doing encryption by hand, but there are lots of good books that start by doing that. I want to instead spend some time demystifying the first computer based encryption tool you'll use: XOR.
 
 First off, it's pronounced "Ex Or", in two syllables. Not "Zor" or "Shor" or "Tom Petty", but "Ex Or".
@@ -426,5 +428,97 @@ There's one more handy thing about xor, it's reversible. Notice in both cases ab
     > 8 ^ 15
     // 7
 
+This type of relationship is exactly what we want for cryptography!
 
+If we have some plaintext message 'm', and some key 'k' that only you and your friend know, then we can xor m with k and get a secret 'c'. And when we xor 'c' with 'k', we'll get back our original message 'm'.
 
+If you're not seeing how this is encryption yet, don't worry, you shouldn't be because we haven't done an example yet! Let's do one now!
+
+To do it we have to go back to ASCII encoding. Let's say that we want to encrypt the word 'cat'. Well what are the numerical values in the ASCII table for 'c', 'a' and 't'?
+
+|  'c'  |  'a'  |  't'  |
+|-------|-------|-------|
+|  99   |  97   |  116  |
+
+Now we can pick a secret key we'll call k, which can be any number we can feel like, let's pick a number at random, oh say... 21.
+
+Ok, now let's xor each number with k.
+
+|   |  99  |  97  |  116  |
+|   |------|------|-------|
+|xor|  21  |  21  |  21   |
+|-------------------------|
+|   |  118 |  116 |  97   |
+
+But do this in Node:
+
+    > 99  ^ 21
+    > 97  ^ 21
+    > 116 ^ 21
+
+So we get back '118', '116' and '97', but what are those values in ASCII so we can display them?
+
+|  118  |  116  |  97   |
+|-------|-------|-------|
+|  'v'  |  't'  |  'a'  |
+
+So we just did encryption! We encrypted the string 'cat' against a numerical key of 21, and we get this encrypted message of 'vta'! Awesome!
+
+Now you can send the message of 'vta' along with the key of 21 to your friend, and they can decrypt the message.
+
+Now comes the million dollar question, how can we keep our key a secret too? 
+
+Well, turns out that's a really big question, and it's solved by a system called "Public Key Cryptography". Which this guide might never even get to (at that point you can just read a big crypto book).
+
+For now we just to assume that we can somehow meet up in person, or talk via phone, and securely exhcnage the key. Once we've done that, we can send any amount of encrypted messages publicly, because after all, who would guess that 'vta' means 'cat'? It could mean 'car' or 'run' or 'yay', or '500', we just dont' know!
+
+So now that we've encrypted to 'vta', let's decrypt with our key.
+
+|   |  118  |  116  |  97  |
+|   |-------|-------|------|
+|xor|  21   |  21   |  21  |
+|--------------------------|
+|   |  99   |  97   |  116 |
+
+    > 118 ^ 21
+    > 116 ^ 21
+    > 97  ^ 21
+
+And we should have our original message of 'cat'!
+
+If you think about it, the second ASCII conversion, (where we make our secret message 'vta') is actually kind of optional. For instnace what if we just transmitted our code as:
+
+118.116.97?
+
+We could even make up a system, where we sent these as fake IP addresses:
+
+    Hey friend, check out this site at http://118.116.7.0!
+
+And your friend could reply:
+    
+    Meow!
+
+That's not a perfect example (for instance what if your fake IP addres starts with 0, someone will notice something fishy!), but it should give you a sense of what you can do with a simple xor operation.
+
+##### Exercises #####
+
+Now let's try this out!
+
+You and your friend should agree on a numerical key, it can be any number! Then each of you pick a message and xor it like above and send the encrypted messages to each other to decrypt. 
+
+If you choose too large a key number, you'll notice that maybe the resultant number has no ASCII character, in which case you'll need to just send the number itself. 
+
+For instance, if you xor 'cat' with 2500, then you'll have to do:
+
+    > 99  ^ 2500 
+    // the 'c' character, which becomes 2471
+    > 97  ^ 2500
+    // 2469
+    > 116 ^ 2500
+    // 2480
+
+And 2471, 2469 and 2480 are too large for ASCII, so you'd send your code as: 2471.2469.2480
+
+So go ahead, each of you agree on a key number, encrypt a message and send it to the other, and then decrypt the message you've been given with your key.
+
+Time To Complete: 20 mins.
