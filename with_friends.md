@@ -445,7 +445,7 @@ Now we can pick a secret key we'll call k, which can be any number we can feel l
 Ok, now let's xor each number with k.
 
 |   |  99  |  97  |  116  |
-|   |------|------|-------|
+|---|------|------|-------|
 |xor|  21  |  21  |  21   |
 |---|------|------|-------|
 |   |  118 |  116 |  97   |
@@ -475,7 +475,7 @@ For now we just to assume that we can somehow meet up in person, or talk via pho
 So now that we've encrypted to 'vta', let's decrypt with our key.
 
 |   |  118  |  116  |  97  |
-|   |-------|-------|------|
+|---|-------|-------|------|
 |xor|  21   |  21   |  21  |
 |---|-------|-------|------|
 |   |  99   |  97   |  116 |
