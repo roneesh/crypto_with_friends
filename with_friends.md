@@ -395,3 +395,36 @@ Now we're going to get into our first notions of encrypting with computers. We c
 
 First off, it's pronounced "Ex Or", in two syllables. Not "Zor" or "Shor" or "Tom Petty", but "Ex Or".
 
+An xor is like a math operation, just like you can "add 7 to 8 to get 15", you can "xor 8 with 7 to get 15".
+
+And that's not a coincidence that "xor 8 with 7" results in 15, just like addition. At its core, xor is very close to addition.
+
+That last statement is totally mathematically sound, you can prove it by xor'ing in Node. Open up Node and let's do the xor command, which maybe you've never done before:
+
+    > 8 ^ 7
+    // 15
+
+Instead of '8 + 7', we wrote '8 ^ 7'. Which means "xor 8 with 7". 
+
+Like addition, order does not matter, so try this:
+
+    > 7 ^ 8
+    // 15
+
+They both result in 15! (Did that merit an exclamation point? You decide!)
+
+This is handy, because when we use an xor to encrypt, what we do is "xor our message text with our key, to produce a our encrypted message" And it'll be nice to know that we can do it an any order.
+
+There's one more handy thing about xor, it's reversible. Notice in both cases above we got 15 as a result? (We did). So now if you xor 15 with 8 you'll get 7, and if you xor 15 with 7 you'll get 8. So the three numbers are intimately related. Try it out in node:
+
+    > 15 ^ 7
+    // 8
+    > 7 ^ 15
+    // 8
+    > 15 ^ 8
+    // 7
+    > 8 ^ 15
+    // 7
+
+
+
